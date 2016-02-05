@@ -1,0 +1,8 @@
+services:
+    kasimi.markforumsreadconfirm.listener:
+        class: kasimi\markforumsreadconfirm\event\listener
+        arguments:
+            - @user
+            - @template
+        tags:
+            - { name: event.listener }
