@@ -7,7 +7,7 @@
  *
  */
 jQuery(function($) {
-	var $confirm = $('#markforumsreadconfirm').detach().show();
+	var $confirm = $('#markreadconfirm').detach().show();
 	$.each(['forums', 'topics'], function(i, target) {
 		var confirmed = false;
 		$('[data-ajax=mark_' + target + '_read]').click(function(e) {
