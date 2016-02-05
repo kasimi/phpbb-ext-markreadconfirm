@@ -1,5 +1,5 @@
 {
-	"name": "kasimi/markforumsreadconfirm",
+	"name": "kasimi/markreadconfirm",
 	"type": "phpbb-extension",
 	"description": "Adds a confirmation box before forums and topics are marked as read.",
 	"homepage": "https://github.com/kasimi",
@@ -18,7 +18,7 @@
 		"php": ">=5.3.3"
 	},
 	"extra": {
-		"display-name": "Mark Forums Read Confirm",
+		"display-name": "Mark Read Confirm",
 		"soft-require": {
 			"phpbb/phpbb": ">=3.1.0-a1"
 		}

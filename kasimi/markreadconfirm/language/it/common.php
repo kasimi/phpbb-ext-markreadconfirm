@@ -19,6 +19,6 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'MARKREADCONFIRM_FORUMS'	=> 'Mark forums read?',
-	'MARKREADCONFIRM_TOPICS'	=> 'Mark topics read?',
+	'MARKREADCONFIRM_FORUMS'	=> 'Segnare i forum come già letti?',
+	'MARKREADCONFIRM_TOPICS'	=> 'Segnare gli argomenti come già letti?',
 ));
