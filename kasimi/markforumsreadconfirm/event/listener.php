@@ -20,19 +20,25 @@ class listener implements EventSubscriberInterface
 	/* @var \phpbb\template\template */
 	protected $template;
 
+	/** @var \phpbb\template\context */
+	protected $template_context;
+
 	/**
  	 * Constructor
 	 *
 	 * @param \phpbb\user				$user
 	 * @param \phpbb\template\template	$template
+	 * @param \phpbb\template\context	$template_context
 	 */
 	public function __construct(
-		\phpbb\user $user,
-		\phpbb\template\template $template
+		\phpbb\user						$user,
+		\phpbb\template\template		$template,
+		\phpbb\template\context			$template_context
 	)
 	{
-		$this->user		= $user;
-		$this->template = $template;
+		$this->user						= $user;
+		$this->template					= $template;
+		$this->template_context			= $template_context;
 	}
 
 	/**
@@ -41,7 +47,8 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup' => 'user_setup',
+			'core.user_setup'	=> 'user_setup',
+			'core.page_footer'	=> 'page_footer',
 		);
 	}
 
@@ -51,5 +58,15 @@ class listener implements EventSubscriberInterface
 	public function user_setup($event)
 	{
 		$this->user->add_lang_ext('kasimi/markforumsreadconfirm', 'common');
+	}
+
+	/**
+	 * Enable confirmation
+	 */
+	public function page_footer($event)
+	{
+		$rootref = &$this->template_context->get_root_ref();
+		$markforumsread_confirm = !empty($rootref['U_MARK_FORUMS']) || !empty($rootref['U_MARK_TOPICS']);
+		$this->template->assign_var('MARKFORUMSREADCONFIRM', $markforumsread_confirm);
 	}
 }
