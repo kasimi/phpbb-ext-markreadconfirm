@@ -47,17 +47,8 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'	=> 'user_setup',
-			'core.page_footer'	=> 'page_footer',
+			'core.page_footer' => 'page_footer',
 		);
-	}
-
-	/**
-	 * Load language file
-	 */
-	public function user_setup($event)
-	{
-		$this->user->add_lang_ext('kasimi/markreadconfirm', 'common');
 	}
 
 	/**
@@ -68,5 +59,9 @@ class listener implements EventSubscriberInterface
 		$rootref = &$this->template_context->get_root_ref();
 		$markread_confirm = !empty($rootref['U_MARK_FORUMS']) || !empty($rootref['U_MARK_TOPICS']);
 		$this->template->assign_var('MARKREADCONFIRM', $markread_confirm);
+		if ($markread_confirm)
+		{
+			$this->user->add_lang_ext('kasimi/markreadconfirm', 'common');
+		}
 	}
 }
