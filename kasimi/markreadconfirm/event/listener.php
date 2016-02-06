@@ -57,11 +57,18 @@ class listener implements EventSubscriberInterface
 	public function page_footer($event)
 	{
 		$rootref = &$this->template_context->get_root_ref();
-		$markread_confirm = !empty($rootref['U_MARK_FORUMS']) || !empty($rootref['U_MARK_TOPICS']);
-		$this->template->assign_var('MARKREADCONFIRM', $markread_confirm);
-		if ($markread_confirm)
+		foreach (array('FORUMS', 'TOPICS') as $target)
 		{
-			$this->user->add_lang_ext('kasimi/markreadconfirm', 'common');
+			if (!empty($rootref['U_MARK_' . $target]))
+			{
+				$this->user->add_lang_ext('kasimi/markreadconfirm', 'common');
+				$this->template->assign_vars(array(
+					'MARKREADCONFIRM'			=> true,
+					'MARKREADCONFIRM_TARGET'	=> strtolower($target),
+					'MARKREADCONFIRM_LANG'		=> $this->user->lang('MARKREADCONFIRM_' . $target),
+				));
+				break;
+			}
 		}
 	}
 }

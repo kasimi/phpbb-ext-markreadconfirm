@@ -8,23 +8,21 @@
  */
 jQuery(function($) {
 	var $confirm = $('#markreadconfirm').detach().show();
-	$.each(['forums', 'topics'], function(i, target) {
-		var confirmed = false;
-		$('[data-ajax=mark_' + target + '_read]').click(function(e) {
-			if (confirmed) {
-				confirmed = false;
-			} else {
-				var that = this;
-				e.preventDefault();
-				e.stopImmediatePropagation();
-				$confirm.find('p').text($confirm.data('lang-' + target))
-				phpbb.confirm($confirm, function() {
-					confirmed = true;
-					$(that).click();
-				});
-			}
-		}).each(function() {
-			$._data(this, 'events').click.reverse();
-		});
+	var confirmed = false;
+	$('[data-ajax=mark_' + $confirm.data('target') + '_read]').click(function(e) {
+		if (confirmed) {
+			confirmed = false;
+		} else {
+			var that = this;
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			$confirm.find('p').text($confirm.data('lang'));
+			phpbb.confirm($confirm, function() {
+				confirmed = true;
+				$(that).click();
+			});
+		}
+	}).each(function() {
+		$._data(this, 'events').click.reverse();
 	});
 });
