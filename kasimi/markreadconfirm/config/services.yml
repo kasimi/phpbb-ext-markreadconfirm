@@ -1,9 +1,8 @@
 services:
     kasimi.markreadconfirm.listener:
-        class: kasimi\markreadconfirm\event\listener
+        class: 'kasimi\markreadconfirm\event\listener'
         arguments:
-            - @user
-            - @template
-            - @template_context
+            - '@language'
+            - '@template'
         tags:
-            - { name: event.listener }
+            - { name: 'event.listener' }

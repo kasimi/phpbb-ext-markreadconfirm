@@ -1,6 +1,13 @@
 {% if MARKREADCONFIRM %}
-    {% INCLUDEJS '@kasimi_markreadconfirm/markreadconfirm.js' %}
-	<div id="markreadconfirm" class="hidden" data-target="{{ MARKREADCONFIRM_TARGET }}" data-lang="{{ MARKREADCONFIRM_LANG }}">
+	{% INCLUDEJS '@kasimi_markreadconfirm/markreadconfirm.js' %}
+	<script>
+		var markReadConfirm = {
+			forums		: '{{ lang('MARKREADCONFIRM_FORUMS') | e('js') }}',
+			subforums	: '{{ lang('MARKREADCONFIRM_SUBFORUMS') | e('js') }}',
+			topics		: '{{ lang('MARKREADCONFIRM_TOPICS') | e('js') }}'
+		};
+	</script>
+	<div class="markreadconfirm">
 		<h3>{{ lang('CONFIRM') }}</h3>
 		<p></p>
 		<fieldset class="submit-buttons">

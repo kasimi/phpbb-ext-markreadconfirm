@@ -10,41 +10,35 @@
 
 namespace kasimi\markreadconfirm\event;
 
+use phpbb\language\language;
+use phpbb\template\template;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	/* @var \phpbb\user */
-	protected $user;
+	/* @var language */
+	protected $lang;
 
-	/* @var \phpbb\template\template */
+	/* @var template */
 	protected $template;
 
-	/** @var \phpbb\template\context */
-	protected $template_context;
-
 	/**
- 	 * Constructor
-	 *
-	 * @param \phpbb\user				$user
-	 * @param \phpbb\template\template	$template
-	 * @param \phpbb\template\context	$template_context
+	 * @param language	$lang
+	 * @param template	$template
 	 */
 	public function __construct(
-		\phpbb\user						$user,
-		\phpbb\template\template		$template,
-		\phpbb\template\context			$template_context
+		language $lang,
+		template $template
 	)
 	{
-		$this->user						= $user;
-		$this->template					= $template;
-		$this->template_context			= $template_context;
+		$this->lang		= $lang;
+		$this->template	= $template;
 	}
 
 	/**
-	 * Register hooks
+	 * @return array
 	 */
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents()
 	{
 		return [
 			'core.page_footer' => 'page_footer',
@@ -52,23 +46,14 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Enable confirmation
+	 *
 	 */
-	public function page_footer($event)
+	public function page_footer()
 	{
-		$rootref = &$this->template_context->get_root_ref();
-		foreach (['FORUMS', 'TOPICS'] as $target)
+		if ($this->template->retrieve_var('U_MARK_FORUMS') || $this->template->retrieve_var('U_MARK_TOPICS'))
 		{
-			if (!empty($rootref['U_MARK_' . $target]))
-			{
-				$this->user->add_lang_ext('kasimi/markreadconfirm', 'common');
-				$this->template->assign_vars([
-					'MARKREADCONFIRM'			=> true,
-					'MARKREADCONFIRM_TARGET'	=> strtolower($target),
-					'MARKREADCONFIRM_LANG'		=> $this->user->lang('MARKREADCONFIRM_' . $target),
-				]);
-				break;
-			}
+			$this->lang->add_lang('common', 'kasimi/markreadconfirm');
+			$this->template->assign_var('MARKREADCONFIRM', true);
 		}
 	}
 }
