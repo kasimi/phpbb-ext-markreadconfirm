@@ -23,24 +23,29 @@
 		return markReadConfirm.topics;
 	};
 
-	phpbb.ajaxify = function(options) {
-		if (options.callback === 'mark_topics_read' || options.callback === 'mark_forums_read') {
-			$(options.selector).click(function(e, confirmed) {
-				if (!confirmed) {
-					e.preventDefault();
-					e.stopImmediatePropagation();
-					var actionUrl = $(this).prop('href');
-					var confirmText = getConfirmText(actionUrl);
-					$confirm.find('p').text(confirmText);
-					phpbb.confirm($confirm, function(success) {
-						if (success) {
-							$(options.selector).trigger('click', true);
-						}
-					});
+	var confirmCallback = function(e) {
+		if (!$confirm.is(':visible')) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			var $this = $(this);
+			var actionUrl = $this.prop('href');
+			var confirmText = getConfirmText(actionUrl);
+			$confirm.find('p').text(confirmText);
+			phpbb.confirm($confirm, function(success) {
+				if (success) {
+					$this.get(0).click();
 				}
 			});
 		}
+	};
+
+	phpbb.ajaxify = function(options) {
+		if (options.callback === 'mark_topics_read' || options.callback === 'mark_forums_read') {
+			$(options.selector).click(confirmCallback);
+		}
 		ajaxify.call(this, options);
 	};
+
+	$('a.mark, a.mark-read').not('[data-ajax]').click(confirmCallback);
 
 })(jQuery);

@@ -50,7 +50,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function page_footer()
 	{
-		if ($this->template->retrieve_var('U_MARK_FORUMS') || $this->template->retrieve_var('U_MARK_TOPICS'))
+		if ($this->template->retrieve_var('U_MARK_FORUMS') || $this->template->retrieve_var('U_MARK_TOPICS') || $this->template->retrieve_var('U_MARK_ALL_READ'))
 		{
 			$this->lang->add_lang('common', 'kasimi/markreadconfirm');
 			$this->template->assign_var('MARKREADCONFIRM', true);
