@@ -1,11 +1,11 @@
-<!-- IF MARKREADCONFIRM -->
-    <!-- INCLUDEJS @kasimi_markreadconfirm/markreadconfirm.js -->
-	<div id="markreadconfirm" class="hidden" data-target="{MARKREADCONFIRM_TARGET}" data-lang="{MARKREADCONFIRM_LANG}">
-		<h3>{L_CONFIRM}</h3>
+{% if MARKREADCONFIRM %}
+    {% INCLUDEJS '@kasimi_markreadconfirm/markreadconfirm.js' %}
+	<div id="markreadconfirm" class="hidden" data-target="{{ MARKREADCONFIRM_TARGET }}" data-lang="{{ MARKREADCONFIRM_LANG }}">
+		<h3>{{ lang('CONFIRM') }}</h3>
 		<p></p>
 		<fieldset class="submit-buttons">
-			<input type="button" name="confirm" value="{L_YES}" class="button2" />&nbsp;
-			<input type="button" name="cancel" value="{L_NO}" class="button2" />
+			<input type="button" name="confirm" value="{{ lang('YES') }}" class="button2">&nbsp;
+			<input type="button" name="cancel" value="{{ lang('NO') }}" class="button2">
 		</fieldset>
 	</div>
-<!-- ENDIF -->
+{% endif %}
