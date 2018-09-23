@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds a popup that asks for confirmation before forums and topics are marked read.",
 	"homepage": "https://kasimi.net",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"time": "2018-09-23",
 	"license": "GPL-2.0-only",
 	"authors": [
