@@ -1,26 +1,26 @@
 {
 	"name": "kasimi/markreadconfirm",
 	"type": "phpbb-extension",
-	"description": "Adds a confirmation box before forums and topics are marked as read.",
-	"homepage": "https://github.com/kasimi",
-	"version": "1.0.0",
-	"time": "2016-02-05",
-	"license": "GPL-2.0",
+	"description": "Adds a popup that asks for confirmation before forums and topics are marked read.",
+	"homepage": "https://kasimi.net",
+	"version": "1.1.0",
+	"time": "2018-09-23",
+	"license": "GPL-2.0-only",
 	"authors": [
 		{
 			"name": "kasimi",
-			"email": "",
-			"homepage": "https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1330603",
+			"email": "mail@kasimi.net",
+			"homepage": "https://kasimi.net",
 			"role": "Lead Developer"
 		}
 	],
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.4.7"
 	},
 	"extra": {
 		"display-name": "Mark Read Confirm",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.1.0-a1"
+			"phpbb/phpbb": ">=3.2.2"
 		}
 	}
 }
