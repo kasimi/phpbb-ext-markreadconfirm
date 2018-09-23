@@ -1,7 +1,7 @@
 /**
  *
  * @package phpBB Extension - Mark Read Confirm
- * @copyright (c) 2016 kasimi - https://kasimi.net
+ * @copyright (c) 2018 kasimi - https://kasimi.net
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  */
