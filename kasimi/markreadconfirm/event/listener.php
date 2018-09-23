@@ -46,9 +46,9 @@ class listener implements EventSubscriberInterface
 	 */
 	static public function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.page_footer' => 'page_footer',
-		);
+		];
 	}
 
 	/**
@@ -57,16 +57,16 @@ class listener implements EventSubscriberInterface
 	public function page_footer($event)
 	{
 		$rootref = &$this->template_context->get_root_ref();
-		foreach (array('FORUMS', 'TOPICS') as $target)
+		foreach (['FORUMS', 'TOPICS'] as $target)
 		{
 			if (!empty($rootref['U_MARK_' . $target]))
 			{
 				$this->user->add_lang_ext('kasimi/markreadconfirm', 'common');
-				$this->template->assign_vars(array(
+				$this->template->assign_vars([
 					'MARKREADCONFIRM'			=> true,
 					'MARKREADCONFIRM_TARGET'	=> strtolower($target),
 					'MARKREADCONFIRM_LANG'		=> $this->user->lang('MARKREADCONFIRM_' . $target),
-				));
+				]);
 				break;
 			}
 		}

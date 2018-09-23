@@ -15,10 +15,10 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	'MARKREADCONFIRM_FORUMS'	=> 'Segnare i forum come già letti?',
 	'MARKREADCONFIRM_TOPICS'	=> 'Segnare gli argomenti come già letti?',
-));
+]);

@@ -15,10 +15,10 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	'MARKREADCONFIRM_FORUMS'	=> 'Mark forums read?',
 	'MARKREADCONFIRM_TOPICS'	=> 'Mark topics read?',
-));
+]);
